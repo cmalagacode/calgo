@@ -53,3 +53,30 @@ int64_t binary_search_i64(const int64_t* arr, const int64_t size, const int64_t 
     }
     return -1;
 }
+
+int16_t linear_search_i16(const int16_t* arr, const int16_t size, const int16_t target) {
+    for (int16_t i = 0; i < size; i++) {
+        if (arr[i] == target) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+int32_t linear_search_i32(const int32_t* arr, const int32_t size, const int32_t target) {
+    for (int32_t i = 0; i < size; i++) {
+        if (arr[i] == target) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+int64_t linear_search_i64(const int64_t* arr, const int64_t size, const int64_t target) {
+    for (int64_t i = 0; i < size; i++) {
+        if (arr[i] == target) {
+            return i;
+        }
+    }
+    return -1;
+}

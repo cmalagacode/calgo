@@ -113,11 +113,43 @@ void test_binary_search_i64(void) {
     }
 }
 
+void test_linear_search_i16(void) {
+    constexpr int TEST_INPUT_SIZE = 3;
+    const int16_t test_inputs[TEST_INPUT_SIZE][9] = {
+        {344, 44, 54, 66, 56, 7, 45, 99, 22},
+        {344, 44, 54, 66, 56, 7, 45, 99, 22},
+        {344, 44, 54, 66, 56, 7, 45, 99, 22}
+    };
+    const int16_t test_targets[TEST_INPUT_SIZE] = {
+        100,
+        99,
+        22
+    };
+    const int16_t test_expected_results[TEST_INPUT_SIZE] = {
+        -1,
+        7,
+        8
+    };
+    for (size_t i = 0; i < TEST_INPUT_SIZE; i++) {
+        const int16_t result = linear_search_i16(
+            test_inputs[i],
+            sizeof(test_inputs[i]) / sizeof(test_inputs[i][0]),
+            test_targets[i]
+        );
+        TEST_ASSERT_EQUAL(test_expected_results[i], result);
+    }
+
+}
 
 int main() {
     UNITY_BEGIN();
+    // Start Binary Search
     RUN_TEST(test_binary_search_i16);
     RUN_TEST(test_binary_search_i32);
     RUN_TEST(test_binary_search_i64);
+    // End Binary Search
+    // Start Linear Search
+    RUN_TEST(test_linear_search_i16);
+    // End Linear Search
     return UNITY_END();
 }
