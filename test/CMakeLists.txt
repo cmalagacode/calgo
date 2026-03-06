@@ -6,5 +6,5 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(unit-test)
 add_executable(test main.c)
-target_link_libraries(test PRIVATE unity search sort)
+target_link_libraries(test PRIVATE unity search sort queue)
 target_include_directories(test PRIVATE ${CMAKE_CURRENT_LIST_DIR})

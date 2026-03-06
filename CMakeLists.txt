@@ -3,4 +3,6 @@ project(calgo VERSION 0.1.0 LANGUAGES C DESCRIPTION "Implementation of various a
 set(CMAKE_C_STANDARD 23)
 add_subdirectory(search)
 add_subdirectory(sort)
+add_subdirectory(doubly_linked_list)
+add_subdirectory(queue)
 add_subdirectory(test)

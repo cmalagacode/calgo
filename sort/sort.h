@@ -1,5 +1,5 @@
-#ifndef SORT_H_
-#define SORT_H_
+#ifndef CALGO_SORT_H_
+#define CALGO_SORT_H_
 
 #include <stdlib.h>
 
