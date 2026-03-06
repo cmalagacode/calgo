@@ -18,3 +18,8 @@ cmake -B cmake-build-debug -DCMAKE_BUILD_TYPE=Debug . && cmake --build cmake-bui
 cmake -B cmake-build-release -DCMAKE_BUILD_TYPE=Release . && cmake --build cmake-build-release && ./cmake-build-release/test/test
 ```
 
+## Clang Format
+
+```bash
+clang-format -style=Google -i <filename>
+```
