@@ -2,6 +2,7 @@
 #define CALGO_SORT_H_
 
 #include <stdlib.h>
+#include <stdint.h>
 
 // ==============================================================
 // quick sort algorithm (average: linearithmic)
@@ -11,7 +12,7 @@
     The goal is that the array on the left will have all
     elements less than the pivot and the array on the right will
     have all the elements greater than the pivot.
-    On average this algorithm is faster than merge sort.
+    On average, this algorithm is faster than merge sort.
     Can be implemented using recursion and iteration.
     This implementation uses iteration to avoid stack overflow issues
     with larger structures.
