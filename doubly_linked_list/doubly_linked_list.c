@@ -1,16 +1,12 @@
 #include "doubly_linked_list.h"
 
-// new
-
-struct DoublyLinkedList new_doubly_linked_list(void) {
+struct DoublyLinkedList dll_new(void) {
   const struct DoublyLinkedList list = {
       .head = nullptr, .tail = nullptr, .size = 0};
   return list;
 }
 
-// end new
-
-void insert_dll_item(struct DoublyLinkedList* list, const enum DLL_TYPES data_type,
+void dll_insert(struct DoublyLinkedList* list, const enum DLL_TYPES data_type,
                 const union DLL_DATA data) {
   struct Node* n = calloc(1, sizeof(struct Node));
 
@@ -23,6 +19,11 @@ void insert_dll_item(struct DoublyLinkedList* list, const enum DLL_TYPES data_ty
       n->data.data_f32 = data.data_f32;
     } else if (data_type == DLL_DBL) {
       n->data.data_dbl = data.data_dbl;
+    } else if (data_type == DLL_STR) {
+      n->data.data_str = data.data_str;
+    } else {
+      free(n);
+      return;
     }
     n->next = nullptr;
     n->prev = nullptr;
@@ -38,6 +39,11 @@ void insert_dll_item(struct DoublyLinkedList* list, const enum DLL_TYPES data_ty
       n->data.data_f32 = data.data_f32;
     } else if (data_type == DLL_DBL) {
       n->data.data_dbl = data.data_dbl;
+    } else if (data_type == DLL_STR) {
+      n->data.data_str = data.data_str;
+    } else {
+      free(n);
+      return;
     }
     n->next = nullptr;
     n->prev = list->tail;
@@ -46,7 +52,7 @@ void insert_dll_item(struct DoublyLinkedList* list, const enum DLL_TYPES data_ty
   }
 }
 
-bool delete_dll_item(struct DoublyLinkedList* list,
+bool dll_delete(struct DoublyLinkedList* list,
                      const enum DLL_TYPES item_type,
                      const union DLL_DATA item) {
   struct Node* current_node = list->head;
@@ -113,7 +119,7 @@ bool delete_dll_item(struct DoublyLinkedList* list,
   return false;
 }
 
-void prepend_dll_item(struct DoublyLinkedList* list,
+void dll_prepend(struct DoublyLinkedList* list,
                       const enum DLL_TYPES item_type,
                       const union DLL_DATA item) {
   struct Node* n = calloc(1, sizeof(struct Node));
@@ -126,6 +132,11 @@ void prepend_dll_item(struct DoublyLinkedList* list,
     n->data.data_f32 = item.data_f32;
   } else if (item_type == DLL_DBL) {
     n->data.data_dbl = item.data_dbl;
+  } else if (item_type == DLL_STR) {
+    n->data.data_str = item.data_str;
+  } else {
+    free(n);
+    return;
   }
 
   if (list->size == 0) {
@@ -138,6 +149,8 @@ void prepend_dll_item(struct DoublyLinkedList* list,
   }
   list->size++;
 }
+
+// TODO BELOW
 
 void append_dll_item(struct DoublyLinkedList* list, enum DLL_TYPES item_type, union DLL_DATA item) {
   struct Node* n = calloc(1, sizeof(struct Node));

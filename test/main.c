@@ -132,6 +132,6 @@ int main() {
   // End Linear Search
   // Start quick sort
   RUN_TEST(test_quick_sort_i32);
-  // End quick sor
+  // End quick sort
   return UNITY_END();
 }

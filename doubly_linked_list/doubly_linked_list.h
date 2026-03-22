@@ -30,10 +30,16 @@ struct DoublyLinkedList {
   size_t size;
 };
 
-struct DoublyLinkedList new_doubly_linked_list(void);
-void insert_dll_item(struct DoublyLinkedList* list, enum DLL_TYPES data_type, union DLL_DATA data);
-bool delete_dll_item(struct DoublyLinkedList* list, enum DLL_TYPES item_type, union DLL_DATA item);
-void prepend_dll_item(struct DoublyLinkedList* list, enum DLL_TYPES item_type, union DLL_DATA item);
+// creates a new doubly linked list --> O(1)
+struct DoublyLinkedList dll_new(void);
+// insert a node into doubly linked list --> at the end of the list --> O(1)
+void dll_insert(struct DoublyLinkedList* list, enum DLL_TYPES data_type, union DLL_DATA data);
+// delete a node from doubly linked list --> O(n)
+bool dll_delete(struct DoublyLinkedList* list, enum DLL_TYPES item_type, union DLL_DATA item);
+// prepend node into doubly linked list --> O(1)
+void dll_prepend(struct DoublyLinkedList* list, enum DLL_TYPES item_type, union DLL_DATA item);
+
+// TODO BELOW
 void append_dll_item(struct DoublyLinkedList* list, enum DLL_TYPES item_type, union DLL_DATA item);
 void pop_first_dll_item(struct DoublyLinkedList* list);
 void pop(struct DoublyLinkedList* list);
