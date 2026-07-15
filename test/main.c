@@ -1,5 +1,6 @@
 #include "search.h"
 #include "sort.h"
+#include "doubly_linked_list.h"
 #include "unity.h"
 
 // ===================================================
@@ -108,6 +109,14 @@ void test_quick_sort_i32(void) {
     }
 }
 
+void test_doubly_linked_list(void) {
+    struct DoublyLinkedList list = dll_new();
+    union DLL_DATA data;
+    data.data_dbl = 100.22;
+    dll_insert(&list, DLL_DBL, data);
+    TEST_ASSERT_EQUAL(100.22, list.head->data.data_dbl);
+}
+
 int main() {
     UNITY_BEGIN();
     // Start Binary Search
@@ -121,5 +130,8 @@ int main() {
     // Start quick sort
     RUN_TEST(test_quick_sort_i32);
     // End quick sort
+    // Start doubly linked list test
+    RUN_TEST(test_doubly_linked_list);
+    // end doubly linked list test
     return UNITY_END();
 }
