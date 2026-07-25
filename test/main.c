@@ -16,7 +16,7 @@ void tearDown(void) {
 
 // ===================================================
 
-void test_binary_search_i16(void) {
+static void test_binary_search_i16(void) {
     constexpr int16_t ARRAY_TEST_CASE_SIZE = 3;
     constexpr int16_t test_cases[ARRAY_TEST_CASE_SIZE][2][9] = {
         {{1, 2, 3, 4, 500, 4444, 8000, 8500, 8700}, {8500}},
@@ -34,7 +34,7 @@ void test_binary_search_i16(void) {
     }
 }
 
-void test_binary_search_i32(void) {
+static void test_binary_search_i32(void) {
     constexpr int32_t ARRAY_TEST_CASE_SIZE = 3;
     const int32_t test_cases[ARRAY_TEST_CASE_SIZE][2][9] = {
         {{1, 2, 3, 4, 500, 4444, 8000, 8500, 8700}, {8500}},
@@ -50,7 +50,7 @@ void test_binary_search_i32(void) {
     }
 }
 
-void test_binary_search_i64(void) {
+static void test_binary_search_i64(void) {
     constexpr int64_t ARRAY_TEST_CASE_SIZE = 3;
     const int64_t test_cases[ARRAY_TEST_CASE_SIZE][2][9] = {
         {{1, 2, 3, 4, 500, 4444, 8000, 8500, 8700}, {8500}},
@@ -59,14 +59,14 @@ void test_binary_search_i64(void) {
     };
     const int64_t expected_results[ARRAY_TEST_CASE_SIZE] = {7, 5, 4};
     for (size_t i = 0; i < ARRAY_TEST_CASE_SIZE; i++) {
-        const int32_t result = binary_search_i64(
+        const int64_t result = binary_search_i64(
             test_cases[i][0], sizeof(test_cases[i][0]) / sizeof(test_cases[i][0][0]),
             test_cases[i][1][0]);
         TEST_ASSERT_EQUAL(expected_results[i], result);
     }
 }
 
-void test_linear_search_i16(void) {
+static void test_linear_search_i16(void) {
     constexpr int TEST_INPUT_SIZE = 3;
     const int16_t test_cases[TEST_INPUT_SIZE][2][9] = {
         {{344, 44, 54, 66, 56, 7, 45, 99, 22}, {100}},
@@ -84,7 +84,43 @@ void test_linear_search_i16(void) {
     }
 }
 
-void test_quick_sort_i32(void) {
+static void test_linear_search_i32(void) {
+    constexpr int TEST_INPUT_SIZE = 3;
+    const int32_t test_cases[TEST_INPUT_SIZE][2][9] = {
+        {{344, 44, 54, 66, 56, 7, 45, 99, 22}, {100}},
+        {{344, 44, 54, 66, 56, 7, 45, 99, 22}, {99}},
+        {{344, 44, 54, 66, 56, 7, 45, 99, 22}, {22}}
+    };
+    const int32_t expected_results[TEST_INPUT_SIZE] = {-1, 7, 8};
+    for (size_t i = 0; i < TEST_INPUT_SIZE; i++) {
+        const int32_t result = linear_search_i32(
+            test_cases[i][0],
+            sizeof(test_cases[i][0]) / sizeof(test_cases[i][0][0]),
+            test_cases[i][1][0]
+        );
+        TEST_ASSERT_EQUAL(expected_results[i], result);
+    }
+}
+
+static void test_linear_search_i64(void) {
+    constexpr int TEST_INPUT_SIZE = 3;
+    const int64_t test_cases[TEST_INPUT_SIZE][2][9] = {
+        {{344, 44, 54, 66, 56, 7, 45, 99, 22}, {100}},
+        {{344, 44, 54, 66, 56, 7, 45, 99, 22}, {99}},
+        {{344, 44, 54, 66, 56, 7, 45, 99, 22}, {22}}
+    };
+    const int64_t expected_results[TEST_INPUT_SIZE] = {-1, 7, 8};
+    for (size_t i = 0; i < TEST_INPUT_SIZE; i++) {
+        const int64_t result = linear_search_i64(
+            test_cases[i][0],
+            sizeof(test_cases[i][0]) / sizeof(test_cases[i][0][0]),
+            test_cases[i][1][0]
+        );
+        TEST_ASSERT_EQUAL(expected_results[i], result);
+    }
+}
+
+static void test_quick_sort_i32(void) {
     constexpr int TEST_CASE_SIZE = 3;
     constexpr int TEST_CASE_INPUT_SIZE = 9;
     const int32_t test_cases[TEST_CASE_SIZE][TEST_CASE_INPUT_SIZE] = {
@@ -109,7 +145,7 @@ void test_quick_sort_i32(void) {
     }
 }
 
-void test_doubly_linked_list(void) {
+static void test_doubly_linked_list(void) {
     struct DoublyLinkedList list = dll_new();
     union DLL_DATA data;
     data.data_dbl = 100.22;
@@ -117,7 +153,7 @@ void test_doubly_linked_list(void) {
     TEST_ASSERT_EQUAL(100.22, list.head->data.data_dbl);
 }
 
-int main() {
+int main(void) {
     UNITY_BEGIN();
     // Start Binary Search
     RUN_TEST(test_binary_search_i16);
@@ -126,6 +162,8 @@ int main() {
     // End Binary Search
     // Start Linear Search
     RUN_TEST(test_linear_search_i16);
+    RUN_TEST(test_linear_search_i32);
+    RUN_TEST(test_linear_search_i64);
     // End Linear Search
     // Start quick sort
     RUN_TEST(test_quick_sort_i32);
